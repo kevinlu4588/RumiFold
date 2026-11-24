@@ -1,0 +1,34 @@
+{
+  "output": "runs/2_replay",
+  "seed": 17,
+  "steps": 10000,
+  "effective_batch": 24,
+  "lr": 5e-05,
+  "warmup": 200,
+  "weight_decay": 0.01,
+  "save_every": 1000,
+  "model": {
+    "init_from": "checkpoints/rumifold-95k"
+  },
+  "tasks": {
+    "replay": {
+      "weight": 1,
+      "data": "RumiFold_Functional/replay",
+      "max_tokens": 2048,
+      "protein_visible": 0.25,
+      "fold": {
+        "data": "RumiFold_Data",
+        "max_residues": 512,
+        "complex_fraction_start": 0.6,
+        "complex_fraction_end": 0.6,
+        "complex_ramp_steps": 1,
+        "loss": {
+          "intra": 1.0,
+          "inter": 1.0,
+          "peptide": 0.5,
+          "clash": 0.01
+        }
+      }
+    }
+  }
+}

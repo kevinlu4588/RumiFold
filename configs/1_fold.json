@@ -1,0 +1,32 @@
+{
+  "output": "runs/1_fold",
+  "seed": 0,
+  "steps": 200000,
+  "effective_batch": 24,
+  "lr": 0.0001,
+  "warmup": 200,
+  "weight_decay": 0.01,
+  "save_every": 1000,
+  "model": {
+    "rank": 256,
+    "alpha": 256,
+    "chain_gap": 200
+  },
+  "tasks": {
+    "fold": {
+      "weight": 1,
+      "data": "RumiFold_Data",
+      "max_residues": 2048,
+      "complex_fraction_start": 0.25,
+      "complex_fraction_end": 0.6,
+      "complex_ramp_steps": 2000,
+      "loss": {
+        "intra": 1.0,
+        "inter": 1.0,
+        "peptide": 0.5,
+        "clash": 0.01
+      },
+      "heterodimer_fraction": 0.5
+    }
+  }
+}
