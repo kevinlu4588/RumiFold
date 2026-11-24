@@ -1,0 +1,14 @@
+torch>=2.11,<2.12
+transformers==4.57.6
+safetensors
+huggingface_hub
+numpy
+# ESM-C features (scripts/make_esmc_features.py)
+esm==3.4.1.post1
+# evaluation
+cafaeval
+evaluate
+bert_score
+rouge_score
+absl-py
+nltk

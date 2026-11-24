@@ -1,0 +1,38 @@
+{
+  "output": "runs/supplementary_go_with_heads",
+  "seed": 17,
+  "steps": 20000,
+  "effective_batch": 24,
+  "lr": 5e-05,
+  "warmup": 200,
+  "weight_decay": 0.01,
+  "save_every": 1000,
+  "model": {
+    "init_from": "checkpoints/rumifold-95k"
+  },
+  "tasks": {
+    "gene_ontology": {
+      "weight": 1,
+      "data": "RumiFold_GO",
+      "max_length": 2048,
+      "organism_dropout": 0.1,
+      "fold_weight": 1.0,
+      "loss": {
+        "intra": 1.0,
+        "inter": 1.0,
+        "peptide": 0.5,
+        "clash": 0.01
+      },
+      "head": true,
+      "head_weight": 3.0,
+      "residue_labels": true,
+      "residue_weight": 1.0,
+      "residue_vocab": "RumiFold_Functional/residue_labels/vocab.json",
+      "init_from": "checkpoints/rumifold-95k"
+    }
+  },
+  "lr_by_prefix": {
+    "gov2_head.": 0.0003,
+    "residue_heads.": 0.001
+  }
+}

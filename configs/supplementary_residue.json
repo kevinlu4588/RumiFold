@@ -1,0 +1,31 @@
+{
+  "output": "runs/supplementary_residue",
+  "seed": 17,
+  "steps": 20000,
+  "effective_batch": 24,
+  "lr": 5e-05,
+  "warmup": 200,
+  "weight_decay": 0.01,
+  "save_every": 1000,
+  "model": {
+    "init_from": "checkpoints/rumifold-95k"
+  },
+  "tasks": {
+    "residue": {
+      "weight": 1,
+      "data": "RumiFold_Functional",
+      "max_length": 1024,
+      "residue_weight": 1.0,
+      "loss": {
+        "intra": 1.0,
+        "inter": 1.0,
+        "peptide": 0.5,
+        "clash": 0.01
+      },
+      "init_from": "checkpoints/rumifold-95k"
+    }
+  },
+  "lr_by_prefix": {
+    "residue_heads.": 0.001
+  }
+}

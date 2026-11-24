@@ -1,0 +1,36 @@
+{
+  "output": "runs/3_prot2text",
+  "seed": 17,
+  "steps": 20000,
+  "effective_batch": 24,
+  "lr": 5e-05,
+  "warmup": 200,
+  "weight_decay": 0.01,
+  "save_every": 1000,
+  "model": {
+    "init_from": "checkpoints/rumifold-95k"
+  },
+  "tasks": {
+    "prot2text": {
+      "weight": 0.9,
+      "data": "RumiFold_Prot2Text",
+      "max_length": 1024,
+      "max_answer": 256,
+      "balance": 0.5
+    },
+    "fold": {
+      "weight": 0.1,
+      "data": "RumiFold_Data",
+      "max_residues": 512,
+      "complex_fraction_start": 0.6,
+      "complex_fraction_end": 0.6,
+      "complex_ramp_steps": 1,
+      "loss": {
+        "intra": 1.0,
+        "inter": 1.0,
+        "peptide": 0.5,
+        "clash": 0.01
+      }
+    }
+  }
+}
